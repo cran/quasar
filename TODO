@@ -1,0 +1,20 @@
+
+MANCA:
+- rankscore con ipotesi nulla diversa da 0
+- X categoriale con piu di due livelli
+
+- simulate data: varianza dipende dalle cov o meno ma non può essere casuale
+
+  * sigma = a un valore oppure dipendente da X o Z o qualcos'altro (tipo scenario 1, 2, 5 e 6)
+  * rho = correlazione tra le X
+  * distribuzione normale o t (non centrata) e una terza non simmetrica
+  * df = fissi
+- con eteroschedasticità il quantile 0.5 è sotto H0 gli altri no
+
+- n: 30, 50 senza quantili estremi e poi 100 con quantili estremi
+- confronto wald, rankscore
+
+- guardare letteratura simulazioni quantile
+
+
+
