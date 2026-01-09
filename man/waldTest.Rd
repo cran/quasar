@@ -32,7 +32,7 @@ A \code{data.frame} containing:
 \itemize{
   \item \code{Quantiles.Set}: quantile levels
   \item \code{Statistic}: Wald-type test statistic
-  \item \code{p.value}: corresponding unadjusted \eqn{p}-value
+  \item \code{p.value}: corresponding test-specific (unadjusted) \eqn{p}-value
 }
 }
 \description{

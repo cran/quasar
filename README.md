@@ -51,7 +51,7 @@ closedTesting(mod, X = "X")
 
 ## Simulation Code
 
-The `R` scripts used to reproduce the simulation studies (Figures 2 and 3 in the paper)  
+The `R` scripts used to reproduce the simulation studies (Figures 2, 3, 4 and 5 in the paper)  
 are available in the [`simulations/`](https://github.com/angeella/quasar/tree/main/simulations) folder of this repository.
 
 ## Bugs and Feedback
@@ -69,5 +69,5 @@ GPL (≥ 3)
 
 If you use **quasar** in your research, please cite:
 
-> De Santis, F., Vesely, A., and Andreella, A. (2025).  
+> De Santis, F., Vesely, A., and Andreella, A. (2026).  
 > *Inference on Multiple Quantiles in Regression Models by a Rank-Score Approach.*  

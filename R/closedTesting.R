@@ -43,6 +43,9 @@
 #' or, if categorical, has at most two levels. Multilevel categorical covariates
 #' are not supported and will trigger an error.
 #'
+#' The weighting matrix used in the multivariate rank test is the identity matrix, i.e.,
+#' it is currently the only one implemented explicitly as a shortcut within the closed testing procedure.
+#'
 #' @export
 #'
 #' @examples

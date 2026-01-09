@@ -38,6 +38,9 @@ when testing the effect of a covariate of interest across multiple quantile regr
 This procedure requires that the covariate of interest \code{X} is either numeric
 or, if categorical, has at most two levels. Multilevel categorical covariates
 are not supported and will trigger an error.
+
+The weighting matrix used in the multivariate rank test is the identity matrix, i.e.,
+it is currently the only one implemented explicitly as a shortcut within the closed testing procedure.
 }
 \examples{
 # Simulate data

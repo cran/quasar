@@ -37,7 +37,7 @@
 #' \itemize{
 #'   \item \code{Quantiles.Set}: quantile levels
 #'   \item \code{Statistic}: Wald-type test statistic
-#'   \item \code{p.value}: corresponding unadjusted \eqn{p}-value
+#'   \item \code{p.value}: corresponding test-specific (unadjusted) \eqn{p}-value
 #' }
 #' @seealso \code{\link[quantreg]{rq}}, \code{\link[quasar]{rankTest}}
 #' @export

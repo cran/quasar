@@ -4,7 +4,8 @@
 \alias{rankTest}
 \title{Rank-score test for quantile regression}
 \usage{
-rankTest(mod, X, tau = NULL, full = FALSE, h = NULL, alpha = 0.05)
+rankTest(mod, X, tau = NULL, full = FALSE, h = NULL, alpha = 0.05,
+eps = c(1e-04,1e-04), B = "identity", error.distr = NULL, error.par = NULL)
 }
 \arguments{
 \item{mod}{An object of class \code{rqs} returned by
@@ -20,17 +21,44 @@ and corresponding \eqn{p}-values for all intersection hypotheses containing
 \code{tau}. If \code{FALSE} (default), only the results for the single hypotheses
 are returned.}
 
-\item{h}{A numeric value for the bandwidth.}
+\item{h}{Character string specifying the bandwidth selection method for
+sparsity estimation. One of \code{"Hall-Sheather"} or \code{"Bofinger"}.
+The default, \code{NULL}, uses the Hall-Sheather (1988) rule.}
 
 \item{alpha}{A numeric value used for bandwidth estimation.
 Following Koenker (2005), it is typically set equal to the desired significance level.}
+
+\item{eps}{Numeric vector of length 2 specifying the relative accuracies
+requested for approximating the distribution of the test statistic using
+Imhof's (1961) method, "Computing the Distribution of Quadratic Forms in
+Normal Variables". The first component controls the accuracy of the initial
+(more accurate) numerical integration (using \code{\link[stats]{integrate}}),
+while the second component controls the accuracy of a subsequent, less
+accurate integration step (using \code{\link[pracma]{quadgk}}).}
+
+\item{B}{Weight specification used in the computation of the test statistic.
+One of \code{"identity"} (default), \code{"distribution"}, \code{"inverse diagonal"}, or \code{"inverse variance"} (not recommended).
+Alternatively, the user can supply a numeric matrix of dimension
+\code{length(mod$tau) x length(mod$tau)}. This argument is ignored when \code{full = TRUE}.}
+
+\item{error.distr}{A character string specifying the assumed distribution of the
+regression errors, used only when \code{B = "distribution"}.
+Allowed values are \code{"normal"}, \code{"skew-normal"}, \code{"t"}.}
+
+\item{error.par}{A named list of parameters associated with \code{error.distr}.
+Required elements depend on the chosen distribution:
+\itemize{
+  \item For \code{"normal"}: \code{mean}, \code{sd}.
+  \item For \code{"skew-normal"}: \code{xi}, \code{omega}, \code{alpha}.
+  \item For \code{"t"}: \code{df}.
+}}
 }
 \value{
 A \code{data.frame} containing:
 \itemize{
   \item \code{Quantiles.Set}: quantile levels
   \item \code{Statistic}: rank-score test statistic
-  \item \code{p.value}: corresponding unadjusted \eqn{p}-value
+  \item \code{p.value}: corresponding test-specific (unadjusted) \eqn{p}-value
 }
 }
 \description{
@@ -44,6 +72,10 @@ Testing equality to a non-zero value is not yet implemented.
 This procedure requires that the covariate of interest \code{X} is either numeric
 or, if categorical, has at most two levels. Multilevel categorical covariates
 are not supported and will trigger an error.
+
+If \code{full = TRUE}, \code{B} is ignored and the identity weight is used.
+If \code{B} is user-defined (a matrix), it must be square, symmetric, positive
+definite, and numerically invertible.
 }
 \examples{
 set.seed(1234)
@@ -58,6 +90,13 @@ rankTest(mod, X = "X")
 }
 \references{
 Koenker, R. (2005). \emph{Quantile Regression}. Cambridge University Press.
+
+Imhof, J. P. (1961). Computing the distribution of quadratic forms in normal
+variables. \emph{Biometrika}, 48(3--4), 419--426.
+
+De Santis, R., Veselý, A., and Andreella, A. (2026). Inference on multiple
+quantiles in regression models by a rank-score approach.
+\emph{arXiv preprint} <doi:10.48550/arXiv.2511.07999>.
 }
 \seealso{
 \code{\link[quantreg]{rq}}, \code{\link[quasar]{waldTest}}

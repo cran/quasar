@@ -5,7 +5,8 @@
 \title{Simulate data}
 \usage{
 simulateData(n, beta = 0, gamma = 0, mu = 0, Sigma = NULL,
-             sigma.y = 1, distribution = "normal", df = 5, seed = NULL)
+             sigma.y = 1, distribution = "normal", df = 5,
+             xi = -1.453, omega = 2, alpha = 2.2, seed = NULL)
 }
 \arguments{
 \item{n}{Integer. Number of observations.}
@@ -22,10 +23,18 @@ The first column corresponds to \code{X}, the remaining columns to \code{Z1, Z2,
 \item{sigma.y}{Either a numeric scalar or a one-sided expression/string (e.g., \code{"0.3 * abs(X) + 0.1"})
 defining the scale of \code{y}.}
 
-\item{distribution}{Character. One of \code{"normal"}, \code{"t"}, or \code{"exponential"}.
+\item{distribution}{Character. One of \code{"normal"}, \code{"t"}, or \code{"skew-normal"}.
 This is the distribution of \code{y}.}
 
 \item{df}{Numeric scalar > 0. Degrees of freedom for t-distribution.}
+
+\item{xi}{Numeric scalar. Location parameter for the skew-normal distribution. In particular, this will be
+\code{mu + X * beta + Z \%*\% gamma} + \code{xi}. Default -1.453.}
+
+\item{omega}{Numeric scalar > 0. Scale parameter for the skew-normal distribution. In particular, this will be
+\code{sigma.y} + \code{omega}. Default 2.}
+
+\item{alpha}{Numeric scalar. Slant parameter for the skew-normal distribution. Default 2.2.}
 
 \item{seed}{Numeric scalar > 0. Seed for random number generator.}
 }
@@ -38,11 +47,11 @@ a vector of additional covariates \code{Z}, and a response \code{y} drawn from
 the chosen distribution.
 }
 \details{
-The response is generated as \code{y = mu + beta * X + Z \%*\% gamma + error}.
+The response is generated as \code{y = mu + X * beta + Z \%*\% gamma + error}.
 The error term can be drawn from a normal distribution, scaled Student-t with \code{df} degrees of freedom,
-or a shifted exponential. Its standard deviation is defined by \code{sigma.y}:
+or a skew-normal. Its standard deviation is defined by \code{sigma.y}:
 if numeric, a fixed scale is used; if a character expression,
-the scale can vary with \code{X} and/or \code{Z}.
+the scale can vary with \code{X} and/or \code{Z1}.
 }
 \examples{
 set.seed(1)
@@ -56,9 +65,9 @@ dat_n <- simulateData(n = 200, beta = 0.5, gamma = c(0.2,-0.1),
 # Student-t
 dat_t0 <- simulateData(n = 200, beta = 0.5, gamma = c(0.2,-0.1),
                        sigma.y = 0.5, distribution = "t", df = 7)
-# Exponential
-dat_e <- simulateData(n = 200, beta = 0.5, gamma = c(0.2,-0.1),
-                      sigma.y = "0.3 * abs(X) + 0.1", distribution = "exponential")
+# Skew-normal
+dat_sn <- simulateData(n = 200, beta = 0.5, gamma = c(0.2,-0.1),
+                      sigma.y = "abs(Z1) + 1", distribution = "skew-normal")
 
 
 }
