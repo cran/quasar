@@ -19,7 +19,7 @@ estimateCovariance <- function(mod, X, test = "rank", h = NULL, alpha = 0.05){
     #Proviamo con stima sotto H1 (24/10/2025)
   #  design_h0 <- mod$x
 
-    x <- design[,(colnames(mod$model) %in% c(X))]
+    x <- design[, X, drop = FALSE]
 
     hatz <-lapply(f_quant_list, function(w) design_h0%*%solve(t(design_h0)%*%diag(w)%*%design_h0)%*%t(design_h0)%*%diag(w)%*%x)
 

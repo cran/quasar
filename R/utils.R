@@ -6,7 +6,7 @@
 
 make_h0_formula <- function(mod, X) {
   f  <- formula(mod)
-  tt <- terms(f)
+  tt <- terms(f, data = mod$model)
   tl <- attr(tt, "term.labels")
   fac <- attr(tt, "factors")
   intc <- attr(tt, "intercept")

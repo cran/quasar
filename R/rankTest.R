@@ -11,7 +11,7 @@
 #'
 #' @param mod An object of class \code{rqs} returned by
 #'   \code{\link[quantreg]{rq}}, representing the fitted quantile regression models.
-#' @param X A string indicating the covariate of interest.
+#' @param X A string indicating the coefficient of interest, i.e. the name of a column in the model matrix
 #' @param tau A numeric vector of quantiles of interest used in \code{mod}.
 #' If \code{NULL} (default), all quantiles from the \code{mod} object are considered.
 #' @param full Logical. If \code{TRUE}, the function returns the test statistics
@@ -201,7 +201,7 @@ rankTest <- function(mod, X, tau = NULL, full = FALSE, h = NULL, alpha = 0.05, e
       warning("Some eigenvalues are complex; using their real parts.", call. = FALSE)
     }
     eigenvals <- Re(eigenvals)
-    eigenvals <- eigenvals[abs(eigenvals) > 1e-4]
+    eigenvals <- eigenvals[abs(eigenvals) > 1e-7]
 
     if (length(eigenvals) == 1) {
       pval[l] <- 1 - pgamma(tstat[l], shape = 1/2, scale = 2 * eigenvals)

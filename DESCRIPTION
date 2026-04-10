@@ -1,8 +1,8 @@
 Package: quasar
 Type: Package
 Title: Valid Inference on Multiple Quantile Regressions
-Version: 0.2.0
-Date: 2026-01-09
+Version: 0.2.1
+Date: 2026-04-09
 Authors@R: c(
     person(
       "Angela", "Andreella",
@@ -17,12 +17,12 @@ Description: The approach is based on the closed testing procedure to control fa
 Depends: quantreg, Matrix, MASS, pracma, methods, sn
 License: GPL (>= 3)
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 NeedsCompilation: no
-Packaged: 2026-01-09 11:00:48 UTC; Andreella
+Packaged: 2026-04-10 08:13:27 UTC; Andreella
 Author: Angela Andreella [aut, cre],
   Anna Vesely [aut],
   Riccardo De Santis [aut]
 Maintainer: Angela Andreella <angela.andreella@unive.it>
 Repository: CRAN
-Date/Publication: 2026-01-09 11:10:02 UTC
+Date/Publication: 2026-04-10 08:40:02 UTC

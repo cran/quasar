@@ -5,7 +5,7 @@
 **quasar** is an R package that provides valid inference procedures when multiple quantile regressions are fitted simultaneously.  
 It implements the **rank-score–based closed testing** approach proposed in:
 
-> **De Santis, F., Vesely, A., and Andreella, A. (2025)**  
+> **De Santis, F., Vesely, A., and Andreella, A. (2026)**  
 > *Inference on Multiple Quantiles in Regression Models by a Rank-Score Approach.*  
 
 ## Installation
@@ -49,10 +49,12 @@ mod <- rq(
 closedTesting(mod, X = "X")
 ```
 
-## Simulation Code
+## Paper Code
 
-The `R` scripts used to reproduce the simulation studies (Figures 2, 3, 4 and 5 in the paper)  
+The `R` scripts used to reproduce the simulation studies (Figures 2, 3, 4, 5 and 6 in the paper)  
 are available in the [`simulations/`](https://github.com/angeella/quasar/tree/main/simulations) folder of this repository.
+The  `R` scripts for the real data analysis is in [`appication/`](https://github.com/angeella/quasar/tree/main/application) folder.
+
 
 ## Bugs and Feedback
 

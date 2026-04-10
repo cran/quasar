@@ -11,7 +11,7 @@ eps = c(1e-04,1e-04), B = "identity", error.distr = NULL, error.par = NULL)
 \item{mod}{An object of class \code{rqs} returned by
 \code{\link[quantreg]{rq}}, representing the fitted quantile regression models.}
 
-\item{X}{A string indicating the covariate of interest.}
+\item{X}{A string indicating the coefficient of interest, i.e. the name of a column in the model matrix}
 
 \item{tau}{A numeric vector of quantiles of interest used in \code{mod}.
 If \code{NULL} (default), all quantiles from the \code{mod} object are considered.}
